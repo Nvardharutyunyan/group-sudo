@@ -25,4 +25,3 @@ std::cout << "Your sum = " << sum <<std::endl;
 
 return 0;
 } 
-
