@@ -141,6 +141,5 @@ int main() {
     Rectangle rec(koxm1,koxm2);
     std::cout << koxm1 << " ev " << koxm2;
     rec.print();
-
     return 0;
-}111
+}
