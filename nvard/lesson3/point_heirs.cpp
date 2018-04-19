@@ -1,7 +1,7 @@
 #include <iostream>
 #include <math.h>
 class Point {
-    protected:
+    private:
         float x;
         float y;
     public:
@@ -21,8 +21,11 @@ class Point {
         float getY() {
             return y;
         }
+        float distance(Point b) {
+            return sqrt(pow((b.getX() - this->getX()), 2) + pow((b.getY() - this->getY()), 2));
+        }
         void print() {
-            std::cout << "(" << x << ',' << y << ") ";
+            std::cout << "Point(" << x << ',' << y << ")\n ";
         }
 };
 class Circle : public Point {
@@ -46,100 +49,189 @@ class Circle : public Point {
             return M_PI * r * r;
         }
         void print() {
-            std::cout << "O(" << getX() << ',' << getY() << ") kentronov " << "ev r = " << r << " sharavxov ";
+            std::cout << "Circle, O(" << getX() << ',' << getY() << ')' << " r = " << r << std::endl;
+            std:: cout << "Erkarutyun = " << getL() << "\nMakeres = " << getS();
         }
 };
 class Line : public Point {
-    protected:
-        Point skizb, verj;
-    public:
-        Line(Point skizb = 0, Point verj = 0)
-            :skizb(skizb)
-            ,verj(verj) {}
-        ~Line() {}
-        void setSkizb(Point skizb) {
-            this->skizb = skizb;
-        }
-        void setVerj(Point verj) {
-            this->verj = verj;
-        }
-        Point getSkizb() {
-            return skizb;
-        }
-        Point setVerj() {
-            return verj;
-        }
-        float getLength() {
-            return sqrt(pow((verj.getX() - skizb.getX()), 2) + pow((verj.getY() - skizb.getY()), 2));
-        }
-};
-class Rectangle : public Line {
     private:
-        Line erk, layn;
+        Point b;
     public:
-        Rectangle( Line erk, Line layn)
-            :erk(erk)
-            ,layn(layn) {}
-        ~Rectangle() {}
-        void setErk(Line erk) {
-            this->erk = erk;
+        Line(Point a, Point b)
+            : Point(a)
+            , b(b)
+            {}
+        Line(const Line & l) : Point(l) {
+            this->b = b;
+            std::cout << "Coppy constructor of the line \n";
         }
-        void setLayn(Line layn) {
-            this->layn = layn;
+        ~Line() {}
+        void setA(Point a)  {
+            Point::setX(a.getX());
+            Point::setY(a.getY());
         }
-        Line getErk() {
-            return erk;
+        void setB(Point b) {
+            this->b = b;
         }
-        Line getLayn() {
-            return layn;
+        Point getA() {
+            return Point(Point::getX(), Point::getY());
         }
-        float getParagic() {
-            return 2 * (erk.getLength() + layn.getLength());
-        }
-        float getMakeres() {
-            return erk.getLength() * layn.getLength();
+        Point getB() {
+            return b;
         }
         void print() {
-            std::cout << "koxmerov karucvox uxxankyan paragicn e " << getParagic() << ", makeresn e " << getMakeres() << '\n';
+            b.print();
+            std::cout << "Length = " << Point(Point::getX(), Point::getY()).distance(b);
+        }
+        void printCordinates() {
+            if (Point::getX() > b.getX()) {
+                Point curent(Point::getX(), Point::getY());
+                Point::setX(b.getX());
+                Point::setY(b.getY());
+                b = curent;
+            }
+            float x1 = Point::getX();
+            float y1 = Point::getY();
+            float x2 = b.getX();
+            float y2 = b.getY();
+            float k = (y2 - y1) / (x2 - x1);
+            float bb = y1 - x1 * k;
+            for (float i = 1, x = x1 + 1; x < x2; ++x, ++i) {
+                float y = k * x + bb;
+                std::cout << 'A' << i << '(' << x << ',' << y << ") \n";
+            } 
+        }
+};
+class Rectangle : public Point {
+    private:
+        Point b;
+    public:
+        Rectangle( Point a, Point b)
+            : Point(a)
+            , b(b)
+            {}
+        Rectangle(Rectangle & r)
+            : Point(r) {
+                this->b = b;
+            }
+        ~Rectangle() {}
+        void setA(Point a) {
+            Point::setX(a.getX());
+            Point::setY(a.getY());
+        }
+        void setB(float b) {
+            this->b = b;
+        }
+        Point getA() {
+            return Point(Point::getX(), Point::getY());
+        }
+        Point getB() {
+            return b;
+        }
+        float getLayn() {
+            return fabs(Point::getX() - b.getX());
+        }
+        float getErk() {
+            return fabs(Point::getY() - b.getY());
+        }
+
+        float getParagic() {
+            return 2 * (getLayn() + getErk());
+        }
+        float getMakeres() {
+            return getLayn() * getErk();
+        }
+        void print() {
+            Point::print();
+            b.print();
+            std::cout << "Paragic = " << getParagic() << "\nMakeres = " << getMakeres();
+        }
+};
+class Triangle : public Point {
+    private:
+        Point b;
+        Point c;
+    public:
+        Triangle( Point a, Point b, Point c)
+            : Point(a)
+            , b(b)
+            , c(c)
+            {}
+        Triangle(const Triangle & t)
+            : Point(t)
+            , b(t.b)
+            , c(t.c) {
+                std::cout << "Coppy constructor of the triangle";
+            }
+        ~Triangle() {}
+        void setA(Point a) {
+            Point::setX(a.getX());
+            Point::setY(a.getY());
+        }
+        void setB() {
+            this->b = b;
+        }
+        void setC() {
+            this->c = c;
+        }
+        Point getA() {
+            return Point(Point::getX(), Point::getY());
+        }
+        Point getB() {
+            return b;
+        }
+        Point getC() {
+            return c;
+        }
+        float getParagic() {
+            return Point::distance(b) + b.distance(c) + c.distance(Point(Point::getX(), Point::getY()));
+        }
+        float getMakeres() {
+            float p = getParagic() / 2;
+            float koxm1 = Point::distance(b);
+            float koxm2 = b.distance(c);
+            float koxm3 = c.distance(Point(Point::getX(), Point::getY()));
+            float s = sqrt(p * (p - koxm1) * (p - koxm2) * (p - koxm3));
+            return s;
+        }
+        void print() {
+            Point::print();
+            b.print();
+            c.print();
+            std::cout << "Paragic = " << getParagic() << "\nMakeres = " << getMakeres();
         }
 };
 
 int main() {
-    //CIRCLE
-    float m, n, k;
-    std::cout << "Nermucel abscisy` ";
-    std::cin >> m;
-    std::cout << "Nermucel ordinaty` ";
-    std::cin >> n;
-    std::cout << "Nermucel sharavixy` ";
-    std::cin >> k;
-    Circle c(m,n,k);
+    std::cout << "POINT\n-----------\n";
+    Point p1(2,8);
+    p1.print();    
+    Point p2(6,11);
+    p2.print();
+    std:: cout << "Distance = " << p1.distance(p2) << "\n-----------\n";
+    std::cout << "CIRCLE\n-----------\n";
+    Circle c(4,7,3);
     c.print();
-    std::cout << "shrjanagci erkarutyuny` " << c.getL() << ", makeresy` " << c.getS() << '\n';
-    //LINE
-    float x1, x2, y1, y2;
-    std::cout << "Nermucel erku keteri kordinatner \n x1 = ";
-    std::cin >> x1;
-    std::cout << " y1 = ";
-    std::cin >> y1;
-    std::cout << " x2 = ";
-    std::cin >> x2;
-    std::cout << " y2 = ";
-    std::cin >> y2;
-    Point p1(x1,y1);
-    Point p2(x2,y2);
-    p1.print(), p2.print();
-    std::cout << "keterov ancnox hatvaci erkarutyunn e ";
-    Line l(p1,p2);
-    std::cout << l.getLength() << '\n';
-    //RECTANGLE
-    float koxm1, koxm2;
-    std::cout << "Nermucel uxxankyan koxmery \n koxm1 = ";
-    std::cin >> koxm1;
-    std::cout << " koxm2 = ";
-    std::cin >> koxm2;
-    Rectangle rec(koxm1,koxm2);
-    std::cout << koxm1 << " ev " << koxm2;
-    rec.print();
+    std:: cout << "\n-----------\n";
+    std::cout << "LINE\n-----------\n";
+    Point p3(8,16);
+    p3.print();
+    Point p4(2,8);
+    Line l(p3,p4);
+    l.print();
+    std:: cout << "\nThe line cordinates` \n";
+    l.printCordinates();
+    std::cout<< "\n-----------\n";
+    std::cout << "RECTANGLE\n-----------\n";
+    Rectangle r(p1,p2);
+    r.print();
+    std::cout << "\n-----------\n";
+    std::cout << "TRIANGLE\n-----------\n";
+    Triangle t(p1,p2,p3);
+    t.print();
+    std::cout << "\n-----------\n";
+    
+
+
     return 0;
 }
