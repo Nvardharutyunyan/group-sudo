@@ -21,19 +21,21 @@ class Stack {
             if (!full()) {
                 arr[++top] = x;
             }
+            if (top == size -1) {
+                std::cout << "Stack is full! \n";
+            }
         }
         int pop() {
             if (!empty()) {
                 return arr[top--];
             }
-        }
-        void print() {
             if (top == -1) {
                 std::cout << "Stack is empty! \n";
+                return -1;
             }
-            else if (top == size -1) {
-                std::cout << "Stack is full! \n";
-            }
+
+        }
+        void print() {
             for (int i = 0; i < size; i++) {
                 std::cout << arr[i] << ' ';
             }
