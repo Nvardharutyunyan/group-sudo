@@ -1,6 +1,21 @@
 #include <iostream>
 #include <math.h>
-class Point {
+class Shape {
+   public:
+    virtual std::string shape() = 0;
+    virtual float getP() = 0;
+    virtual float getS()= 0;
+    virtual void foo()= 0;
+    virtual void boo() = 0;
+    };
+void printS(Shape* object) {
+    std::cout << object->getS() << '\n';
+}
+
+void printP(Shape* object) {
+    std::cout << object->getP() << '\n';
+}
+class Point: public Shape {
     private:
         float x;
         float y;
@@ -24,7 +39,29 @@ class Point {
         float distance(Point b) {
             return sqrt(pow((b.getX() - this->getX()), 2) + pow((b.getY() - this->getY()), 2));
         }
-        void print() {
+        virtual std::string shape() {
+            return "I'm a point.\n";
+        }
+        virtual float getP() {
+            std::cout << "I have not perimetr.\n";
+            return -1;
+        }
+        virtual float getS() {
+            std::cout << "I have not area.\n";
+            return -1;
+        }
+        virtual void foo() {
+            std::cout << "foo() for point.\n";
+        }
+        virtual void boo() {
+            std::cout << "boo() for point.\n";
+        }
+        void virtualPrint() {
+            std::cout << shape();
+            foo();
+            boo();
+        }
+        virtual void print() {
             std::cout << "Point(" << x << ',' << y << ")\n ";
         }
 };
@@ -42,15 +79,24 @@ class Circle : public Point {
         float getR() {
             return r;
         }
-        float getL() {
+        virtual std::string shape() {
+            return "I'm a circle.\n";
+        }
+        virtual float getP() {
             return 2 * M_PI * r;
         }
-        float getS() {
+        virtual float getS() {
             return M_PI * r * r;
+        }
+        virtual void foo() {
+            std::cout << "foo() for circle.\n";
+        }
+        virtual void boo() {
+            std::cout << "boo() for circle.\n";
         }
         void print() {
             std::cout << "Circle, O(" << getX() << ',' << getY() << ')' << " r = " << r << std::endl;
-            std:: cout << "Erkarutyun = " << getL() << "\nMakeres = " << getS();
+            std:: cout << "Erkarutyun = " << getP() << "\nMakeres = " << getS();
         }
 };
 class Line : public Point {
@@ -78,6 +124,23 @@ class Line : public Point {
         }
         Point getB() {
             return b;
+        }
+        virtual std::string shape() {
+            return "I'm a line.\n";
+        }
+        virtual void foo() {
+            std::cout << "foo() for line.\n";
+        }
+        virtual void boo() {
+            std::cout << "boo() for line.\n";
+        }
+        virtual float getP() {
+            std::cout << "I have not perimetr.\n";
+            return -1;
+        }
+        virtual float getS() {
+            std::cout << "I have not area.\n";
+            return -1;
         }
         void print() {
             b.print();
@@ -134,17 +197,25 @@ class Rectangle : public Point {
         float getErk() {
             return fabs(Point::getY() - b.getY());
         }
-
-        float getParagic() {
+        virtual std::string shape() {
+            return "I'm a rectangle.\n";
+        }
+        virtual float getP() {
             return 2 * (getLayn() + getErk());
         }
-        float getMakeres() {
+        virtual float getS() {
             return getLayn() * getErk();
+        }
+        virtual void foo() {
+            std::cout << "foo() for rectangle.\n";
+        }
+        virtual void boo() {
+            std::cout << "boo() for rectangle.\n";
         }
         void print() {
             Point::print();
             b.print();
-            std::cout << "Paragic = " << getParagic() << "\nMakeres = " << getMakeres();
+            std::cout << "Paragic = " << getP() << "\nMakeres = " << getS();
         }
 };
 class Triangle : public Point {
@@ -183,22 +254,31 @@ class Triangle : public Point {
         Point getC() {
             return c;
         }
-        float getParagic() {
+        virtual std::string shape() {
+            return "I'm a triangle.\n";
+        }
+        virtual float getP() {
             return Point::distance(b) + b.distance(c) + c.distance(Point(Point::getX(), Point::getY()));
         }
-        float getMakeres() {
-            float p = getParagic() / 2;
+        virtual float getS() {
+            float p = getP() / 2;
             float koxm1 = Point::distance(b);
             float koxm2 = b.distance(c);
             float koxm3 = c.distance(Point(Point::getX(), Point::getY()));
             float s = sqrt(p * (p - koxm1) * (p - koxm2) * (p - koxm3));
             return s;
         }
+        virtual void foo() {
+            std::cout << "foo() for triangle.\n";
+        }
+        virtual void boo() {
+            std::cout << "boo() for triangle.\n";
+        }        
         void print() {
             Point::print();
             b.print();
             c.print();
-            std::cout << "Paragic = " << getParagic() << "\nMakeres = " << getMakeres();
+            std::cout << "Paragic = " << getP() << "\nMakeres = " << getS();
         }
 };
 
@@ -230,7 +310,21 @@ int main() {
     Triangle t(p1,p2,p3);
     t.print();
     std::cout << "\n-----------\n";
-    
+    std::cout << "V I R T U A L   F U N C T I O N S\n";    
+    p1.virtualPrint();
+    p1.getP();
+    p1.getS();
+    std::cout << std::endl;
+    c.Point::virtualPrint();
+    std::cout << std::endl;
+    l.Point::virtualPrint();
+    l.getP();
+    l.getS();
+    std::cout << std::endl;
+    r.Point::virtualPrint();
+    std::cout << std::endl;
+    t.Point::virtualPrint();
+    std::cout << std::endl;
 
 
     return 0;
