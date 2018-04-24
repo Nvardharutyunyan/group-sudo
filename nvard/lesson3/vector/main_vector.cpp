@@ -3,10 +3,9 @@
 //#include "vector.cpp"
 int main () {
     Vector v;
-    v[0] = 1;
-    v[1] = 4;
-    v[3] = 21;
-    v[4] = 5;
+    for (int i = 0; i < 5; ++i) {
+        v[i] = i;
+    }
     v.print();
     std::cout << "Vector after insert`\n";
     v.insert(6,15);

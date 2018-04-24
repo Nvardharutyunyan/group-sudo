@@ -1,4 +1,6 @@
 #include <iostream>
+#ifndef VECTOR
+#define VECtOR
 class Vector {
     private:
         unsigned int _size;
@@ -15,3 +17,4 @@ class Vector {
         void remove (unsigned int index);
         void print();
 };
+#endif

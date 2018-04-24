@@ -5,19 +5,19 @@ Vector::Vector(unsigned int size) {
     _size = 2 * size;
     _arr = new int [_size];
 }
-Vector::Vector(const Vector& arrayToCoppy) : _size(arrayToCoppy._size) {
+Vector::Vector(const Vector& arrayToCopy) : _size(arrayToCopy._size) {
     this->_arr = new int[_size];
-    for (unsigned int i = 0; i < _size; i++) {
-        _arr[i] = arrayToCoppy._arr[i];
+    for (unsigned int i = 0; i < _size; ++i) {
+        _arr[i] = arrayToCopy._arr[i];
     }
 }
 Vector::~Vector(){
     delete [] _arr;
 }
 int& Vector::operator[](unsigned int index) {
-    int a = -1;
     if (index > _size) {
-        std::cout << "Error! Your index more, than size of array.";
+        int a = -1; 
+        std::cout << "Error! Your index more, than size of array.\n";
         return a;
     }
     return _arr[index];
@@ -28,7 +28,7 @@ int Vector::resize(unsigned int m) {
         for (unsigned int i = m; i < _size; ++i) {
             _arr[i] = 0;
         }
-        return -1;
+        return 0;
     } else if (m == _size) {
         return -1;
     }
@@ -45,18 +45,22 @@ unsigned int Vector::getSize() {
     return _size;
 }
 void Vector::insert (unsigned int index, double a) {
-    for (unsigned int i = _size- 1; i > index; --i) {
-        _arr[i] = _arr[i - 1];
+    if (index < _size) {
+        for (unsigned int i = _size- 1; i > index; --i) {
+            _arr[i] = _arr[i - 1];
+        }
+        _arr[index] = a;
+    } else {
+        std::cout << "Your index more,than your size!\n";
     }
-     _arr[index] = a;
 }
 int Vector::find(double value) {
-    for (unsigned int i = 0; i < _size; i++) {
+    for (unsigned int i = 0; i < _size; ++i) {
         if (_arr[i] == value) {
             return i;
         }
     }
-    std::cout << "Vector  havn't this value!";
+    std::cout << "Vector  hasn't this value!";
     return -1;
 }
 void Vector::remove (unsigned int index) {
