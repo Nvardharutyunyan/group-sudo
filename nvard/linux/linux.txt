@@ -1,0 +1,66 @@
+Առաջադրանք 1
+sudo -s 
+dd if=/dev/zero of=/swapfile bs=1G count=4
+ls -lh /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon -s
+
+Առաջադրանք 2
+
+vim /var/tmp/script.sh
+chmod +x /var/tmp/script.sh
+sudo vim /etc/systemd/system/sample.service
+
+[Unit]
+Description=Description for sample script goes here
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/var/tmp/script.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target
+
+systemctl daemon-reload
+systemctl enable sample.service
+systemctl start sample.service
+systemctl reboot
+
+Առաջադրանք 3
+
+1․ Ստուգում եմ run level-ը՝ who -r
+2. Փոխում եմ run level-ը՝ init 3, resatart` init 6
+3. Run level-ը default կարող ենք փոխել այս ֆայլում՝ vim /etc/init/rc-sysinit.conf
+
+Առաջադրանք 4
+
+touch result.txt
+grep main | sort -f | cat > result.txt
+
+Առաջադրանք 5
+sudo adduser user1
+sudo adduser user2
+sudo adduser user3
+sudo addgroup group1
+sudo addgroup group2
+sudo addgroup group3
+sudo adduser user1 group1
+sudo adduser user2 group1
+sudo adduser user2 group2
+sudo adduser user3 group2
+sudo adduser user1 group3
+sudo adduser user2 group3
+sudo adduser user3 group3
+mkdir folder1
+mkdir folder2
+sudo chown user1:group1 folder1 
+sudo chown user2:group2 folder2 
+sudo chmod 774 folder1
+sudo chmod 665 folder2
+
+7. find /home/ -type f -regex ".*\.\(txt\|odt\)" 
+
+
