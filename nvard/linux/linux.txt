@@ -61,6 +61,25 @@ sudo chown user2:group2 folder2
 sudo chmod 774 folder1
 sudo chmod 665 folder2
 
-7. find /home/ -type f -regex ".*\.\(txt\|odt\)" 
+Առաջադրանք 6
+
+find /home/ -type f -regex ".*\.\(txt\|odt\)"
+
+Առաջադրանք 7
+
+
+Առաջադրանք 8
+ PATH
+
+touch test.sh
+vim test.sh
+    #!/bin/bash
+    echo "Hello World"
+echo $PATH
+vim ~/.bashrc
+    PATH=$PATH:/dir
+    export PATH
+source ~/.bashrc
+test.sh
 
 
