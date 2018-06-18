@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+}
+
+
+/****************************************************/
+
+.main {
+    background: url(fon.jpeg) no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.opacity {
+    background-color: rgba(3, 255, 255, 0.5);
+}
+
+
+/****************************************************/
+
+.top-content {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.content12 {
+    height: 100vh;
+}
+
+.users {
+    background-color: gainsboro;
+}
+
+.number {
+    display: inline-block;
+    margin: 40px 0;
+}
+
+.number:not(:last-child) {
+    margin-right: 150px;
+}
+
+.center {
+    margin-left: calc(50% - 450px);
+}
+.round {
+    float: right;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid blue;
+    font-size: 65px;
+    color: blue;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.round p {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+}
+
+.user1 {
+    font-size: 30px;
+    color: blue;
+    text-align: center;
+}
+
+.photos img {
+    width: 111px;
+    border: 2px solid orange;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 30px 100px 0 100px;
+}
+
+.photos1, .photos2 {
+    text-align: center;
+}
+
+/****************************************************/
+
+.cv-button {
+    position: relative;
+    background-color: #00cf0a;
+    color: white;
+    height: 10vh;
+    width: 10vw;
+    font-size: 1vw;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+    margin-left: 50%;
+}
+
+.cv-button:hover {
+    background-color: #00da0b;
+}
+
+.cv-button:focus {
+    outline: none;
+    box-shadow: 0px 0px 3px rgb(81, 255, 0);
+    border: 1px solid rgb(30, 255, 0);
+}
+
+
+/****************************************************/
+
+.cv-images {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+.img1,
+.img2,
+.img3,
+.img4 {
+    width: 11vw;
+    height: 30vh;
+    position: absolute;
+}
+
+.img1 {
+    left: 10vmin;
+    top: 30vmin;
+}
+
+.img2 {
+    left: 30vmin;
+    top: 35vmin;
+}
+
+.img3 {
+    left: 22vmin;
+    top: 15vmin;
+}
+
+.img4 {
+    left: 40vmin;
+    top: 25vmin;
+}
+
+.cv-text {
+    float: right;
+    height: 100%;
+    width: 50%;
+}
+
+.cv-text p {
+    width: 100%;
+    height: 50%;
+    margin-top: 20%;
+    font-size: 3vh;
+}
