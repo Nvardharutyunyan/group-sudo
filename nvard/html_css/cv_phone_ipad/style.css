@@ -62,6 +62,7 @@ body {
     color: #FFF;
     font-weight: 300;
     text-align: left;
+    font-size: 25px;
 }
 .text-container button {
     background-color: green;
@@ -130,31 +131,40 @@ body {
     width: calc(100%/3);
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
     .image-container {
         display: none;
     }
     .text-container {
         width: 100%;
     }
+    .ac-1 {
+        width: 100%;
+        margin: 0px auto;
+    }
     #round, #user, #end-img-1, #end-img-2 {
         display: none;
     }
     .info-container>div {
-    width: 100%;
+        width: 100%;
     }
     .info-container>div>div {
-    width: calc(100%/2);
+        width: calc(100%/2);
     }
     .ac-1>.author {
-    width: calc(100%/3);
+        width: calc(100%/3);
     }
     .ac-2>.author {
-    width: calc(100%/2);
+        width: calc(100%/2);
     }
+    .text-container p {
+        font-size: 15px;
+       text-align: center;
+    }
+
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 401px) {
     .image-container {
         display: none;
     }
@@ -165,10 +175,14 @@ body {
         display: none;
     }
     .ac-1 {
-    width: 75%;
-    margin: 0px auto;
+        width: 75%;
+        margin: 0px auto;
     }
     .ac-1>.author {
-    width: calc(100%/3);
+        width: calc(100%/3);
     }
+    .text-container p {
+       text-align: center;
+    }
+
 }
