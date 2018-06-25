@@ -20,6 +20,7 @@ body {
 }
 .header-left p {
 	margin:0px;
+	font-size: 10px;
 }
 .header .fa {
 	color: white;
@@ -58,12 +59,12 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-
 }
 .transparent-bckg div {
 	width: 100%;
     text-align: center;
     color: white;
+    font-size: 10px;
 }
 .info-container {
 	width: inherit;
@@ -150,7 +151,6 @@ h4 {
 }
 .third-top h2, p {
 	text-align: center;
-	color: black;
 }
 .third-bottom {
 	width: inherit;
@@ -220,7 +220,11 @@ h4 {
 .column img {
 	width: 60px;
 	height: 60px;
-	border-radius: 60px;
+	border-radius: 150px;
+}
+.column-img {
+
+	border-radius: 150px;
 }
 .column p {
 	text-align: center;
@@ -228,11 +232,9 @@ h4 {
 
 .last-page {
 	width: 100vw;
-	height: 100vh;
  }
  .last-head {
  	width: inherit;
- 	height: 90vh;
  	background: url(images/fon2.jpg);
 	background-repeat: no-repeat;
     background-size: cover;
@@ -241,7 +243,6 @@ h4 {
  .transparent-bckg1 {
     background-color: rgba(0, 0, 0, 0.5);
     width: inherit;
-    height: 90vh;
 }
 .transparent-bckg1 .last-main {
 	display: flex;
@@ -249,7 +250,6 @@ h4 {
 }
 .last-head1 {
 	width: inherit;
-	height: 20vh;
 }
 .last-head1 h1, .last-head1 p {
     text-align: center;
@@ -257,7 +257,6 @@ h4 {
 }
 .last-head2 {
 	width: inherit;
-	height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,9 +264,9 @@ h4 {
 
 .last-main {
     width: 50vw;
-    height: 50vh;
     padding: 20px;
     background-color: white;
+    margin: 5%;
 }
 
 input[type=text],
@@ -276,7 +275,6 @@ input[type=email],
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 10px 0px;
 }
 
 .name-form {
@@ -291,7 +289,6 @@ input[type=email],
 
 .message-form {
 	width: 100%;
-	height: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -312,11 +309,10 @@ input[type=email],
     color: white;
     text-decoration: none;
     font-size: 18px;
-    cursor: pointer;
+    border-radius: 10px;
 }
 .footer {
 	width: inherit;
-	height: 10vh;
 	background-color: #CCC;
 	display: flex;
 	justify-content: center;
@@ -325,10 +321,9 @@ input[type=email],
 }
 .footer div {
 	width: inherit;
-	height: 5vh;
 	text-align: center;
 }
-.footer>div>p {
+.footer>p {
 	color: black;
 }
 @media screen and (max-width: 500px) {
@@ -342,5 +337,8 @@ input[type=email],
 	.second-left p {
     text-align: center;
 	margin: unset;
+	}
+	.last-main {
+		width: 100vw;
 	}
 }
