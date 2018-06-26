@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html;charset=windows-1251">
         <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-        <script src="function.js" type="text/javascript" async></script>
-        <title>Forma</title>
+        <script type="text/javascript" src="function.js"  async></script>
+        <title>My JS</title>
     </head>
 <body>
-
-    <div class="head">
-        <p>Sign in to my website</p>
-    </div>
-
-    <div class="form">
-        <p>Name</p>
-        <input type="text" class="input">
-        <p>Surname</p>
-        <input type="text" class="input">
-            <p>Gender</p>
-        <div class="gender">
-            <input value="male" name="gender" type="radio">
-            <span>Male</span>
-            <input value="male" name="gender" type="radio">
-            <span>Female</span>
+            <header id="head"></header>
+    <div class="main">
+        <div id="modal"></div>
+        <div  id="container-form"> 
+            <form id="form">
+                <p>NAME</p>
+                <input name="Name" placeholder="Name"/>
+                <p>SURNAME</p>
+                <input name="Lastname" placeholder="Surname"/>
+                <p>GENDER</p>
+                <div class="gender">
+                    <input type="radio" name="gender" id="male"   value="Male"> 
+                    <span>Male</span> 
+                    <input type="radio" name="gender" id="female" value="Female">
+                    <span>Female</span> 
+                </div>  
+                <input id = "button" type="button" value="OK" onclick="to_realize (this.form)" />
+            </form>
         </div>
-        <input class ="button" type="button" name="send" value="Send">
+        <div id="second_page">
+            <div class="container">
+                <form id="form_data">
+                    <input name="name"     placeholder="Name" />
+                    <input name="surname"  placeholder="Surname" />
+                    <input name="adress"     placeholder="Adress" />
+                    <input name="country"     placeholder="Country" />
+                    <input name="phone" type="number" placeholder="Phone" />
+                    <input name="email" type="email"  placeholder="E-mail" />
+                    <input id="button-data" type="button" value="OK" onclick="info_cart (this.form)" />
+                </form>
+                <div id="container_cart"></div>
+            </div>
+        </div>
     </div>
- <!--    <div class="second-page">
-            <input class ="input" name="name"     placeholder="FirsName" />
-            <input class ="input" name="surname"  placeholder="LastName" />
-            <input class ="input" name="adress"     placeholder="Adress" />
-            <input class ="input" name="city"  placeholder="City" />
-            <input class ="input" name="country"     placeholder="Country" />
-            <input class ="input" name="phone"  placeholder="Phone" />
-            <input class ="input" id ="button"  type="button" value="OK"  />
-        
-    </div> -->
 
-
-   <div class="foot">
-    <p>© All rights reserved.</p>    
-   </div>
-
+    <footer>© All rights reserved.</footer>
 
 </body>
 </html>
