@@ -10,21 +10,59 @@ function to_realize (form) {
     document.getElementById ('form').style.display = 'none';
     document.getElementById ('container-form').style.display = 'none';
     second_page = document.getElementById ('second_page');
-    second_page.style.display = 'block';
+    second_page.style.display = 'block';    
+    localStorage.setItem('form', true);
+    localStorage.setItem('str', str);
+
 }
 
 function info_cart(form_data) {
-    var table ="<table ><tr><td> Name: </td> <td>";
-    table += form_data["name"].value +
-            "</td></tr><tr><td>Surname: </td> <td>"+ form_data["surname"].value +
-            "</td></tr><tr><td>Adress: </td> <td>"+ form_data["adress"].value +
-            "</td></tr><tr><td>Country: </td> <td>"+ form_data["country"].value +
-            "</td></tr><tr><td>Phone: </td> <td>"+ form_data["phone"].value + 
-            "</td></tr><tr><td>E-mail: </td> <td>"+ form_data["email"].value + 
-            "</td></tr> </table>";
+    user = {"name": form_data["name"].value,"surname": form_data["surname"].value, "adress": form_data["adress"].value,"country": form_data["country"].value,"phone": form_data["phone"].value,"E-mail": form_data["email"].value}
+    var table ='';
+    saveLS();
+    table +=  createTable(user);
     document.getElementById("container_cart").innerHTML += table;
     for (var i = 0; i < 6; i++) {
         form_data[i].value = "";  
     };
+}
+
+function createTable(user) {
+    if (!user) {
+        return '<p></p>';
+    }
+    return "<table ><tr><td> Name: </td> <td>" + user.name +"</td></tr><tr><td>Surtname: </td> <td>"+  user.surname
+     + "</td></tr><tr><td>Adress: </td> <td>"+ user.adress + "</td></tr><tr><td>Country: </td> <td>"+ 
+    user.country + "</td></tr><tr><td>Phone: </td> <td>"+ user.phone + "</td></tr><tr><td>E-mail: </td> <td>"+ user.email + "</td></tr> </table>";
+}
+function saveLS() {
+    count = localStorage.getItem('count');
+    count++;
+    var user = {"name": form_data["name"].value, 
+                "surname": form_data["surname"].value, 
+                "adress": form_data["adress"].value, 
+                "country": form_data["country"].value,
+                "phone": form_data["phone"].value,
+                "e-mail": form_data["email"].value};
+    localStorage.setItem('user'+String(count), JSON.stringify(user));
+    localStorage.setItem('count', count);
+}
+ function getLS() {
+    count = localStorage.getItem('count') || 1;
+    for (var i = 1; i <= count; i++) {
+        var user = localStorage.getItem("user" + String(i));
+        user = JSON.parse(user);
+        var table ='';
+        table +=  createTable(user);
+        document.getElementById("container_cart").innerHTML += table;
+    }
+}
+window.onload = function() {
+    if(localStorage.getItem('form')) {
+        document.getElementById ('container-form').style.display = 'none';
+        document.getElementById ('head').innerHTML = localStorage.getItem('str');
+    }
+    count = localStorage.getItem('count') || 0;
+    getLS();
 }
 
